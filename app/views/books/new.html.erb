@@ -1,0 +1,55 @@
+
+
+<h1>Books</h1>
+<table>
+<div class="title_t">
+  <div class="k"><p>Title</p></div>
+  <div class="k"><p>Body</p></div>
+</div>
+<div  class="tbody">
+<% @books.each do |i| %>
+<div class="tablel">
+  <div class="k"><%= i.title %></div>
+  <div class="k"><%= i.body %></div>
+
+
+
+
+
+<span>
+
+  <%= link_to  "show", booklist_path(i.id) %>
+
+  <%= link_to  "edit", edit_path(i.id) %>
+  <%= link_to "destroy",destroy_a_path(i.id), method: :delete,"data-confirm" =>"Wanna remove?"%>
+</span>
+</div>
+</br>
+<% end %>
+</div>
+</table>
+
+
+<h1>New Book</h1>
+
+
+<% if @book.errors.any?  %>
+<h3>There are <%= @book.errors.count %> errors</h3>
+<ul>
+  <% @book.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
+
+<%= form_with model: @book, url:"/books", local:true do |f|  %>
+<h4>Title</h4>
+
+<%=f.text_field :title %>
+
+<h4>Body</h4>
+<%= f.text_area :body %>
+<%= f.submit 'Create Book' %>
+
+<% end %>

@@ -1,0 +1,8 @@
+<h1>投稿一覧</h1>
+<% @books.each do |i| %>
+<p>タイトル</p>
+
+<span>
+  <%= link_to  i.title, booklist_path(i.id) %>
+</span>
+<% end %>
